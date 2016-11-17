@@ -1,0 +1,32 @@
+{
+  "development":{
+    "clientId": "app_client_id",
+    "uaaURL": "{The UAA URI end point to get auth token }",
+    "base64ClientCredential": "YXBwX2NsaWVudF9pZDpzZWNyZXQ=",
+    "appUrl": "http://localhost:3000",
+    "timeseriesURL": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints"
+    "assetZoneId": "47627488-5450-481d-a60a-a46d93a702fc",
+    "timeseries_zone": "92f8b9c6-153c-47e0-9cf8-530c9d661c48",
+  },
+  "development-withasset":{
+    "clientId": "app_client_id",
+    "uaaURL": "{The UAA URI end point to get auth token }",
+    "base64ClientCredential": "YXBwX2NsaWVudF9pZDpzZWNyZXQ=",
+    "appUrl": "http://localhost:3000",
+    "timeseriesURL": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints"
+    "assetZoneId": "47627488-5450-481d-a60a-a46d93a702fc",
+    "timeseries_zone": "92f8b9c6-153c-47e0-9cf8-530c9d661c48",
+    "assetURL": "https://predix-asset.run.aws-usw02-pr.ice.predix.io/asset",
+  },
+  "development-withwindyservice":{
+    "clientId": "app_client_id",
+    "uaaURL": "{The UAA URI end point to get auth token }",
+    "base64ClientCredential": "YXBwX2NsaWVudF9pZDpzZWNyZXQ=",
+    "appUrl": "http://localhost:3000",
+    "windServiceUrl": "{URL of the microservice <your-name>-winddata-timeseries-service}, e.g.  https://your-name-winddata-timeseries-service.run.asw-usw02-pr.predix.io",
+    "timeseriesURL": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints"
+    "assetZoneId": "47627488-5450-481d-a60a-a46d93a702fc",
+    "timeseries_zone": "92f8b9c6-153c-47e0-9cf8-530c9d661c48",
+    "assetURL": "https://predix-asset.run.aws-usw02-pr.ice.predix.io/asset",
+  }
+}
