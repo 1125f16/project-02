@@ -1,0 +1,17 @@
+We have already implemented a large portion of the desired functionality with working and tested demos. The code for our application is split between two github repos, one for the iPhone client app, and one for the Tessel2 server application.
+
+
+iPhone app repository: https://github.com/friedmud/proxihue_app
+Server app repository: https://github.com/jtramm/proxihue
+
+
+Specifically, the code we have written and tested live so far does the following:
+
+
+- iPhone app is working, allows for the user to declare their username, the IP address of the Tessel2 on the network, and their desired light brightness level. Monitors the nearest iBeacons and alerts the Tessel2 server via http when the user changes iBeacon regions.
+
+- Tessel2 server is working. Receives an http message from the iPhone client app containing information regarding user id, ibeacon region, and brightness levels. Tracks multiple users. Integrates data from multiple users and interfaces with Philips Hue Bridge to turn on lights for the room a user is entering and turn off lights for rooms with no users.
+
+
+Generally, we feel that we are way ahead of schedule as we have already achieved a working prototype. This is by design, as we were initially not certain that the project would be feasible due to limitations with accuracy with iBeacons. However, our testing so far indicates that the project is definitely feasible and working fairly well. Next steps for our application development are to continue experimenting with processing the iBeacon signals to make a more stable determination of where the user is. We also are considering implementing a cloud server that the iPhone app can communicate with once it has determined that the phone has left the home. This cloud application can then send a message to the Tessel2 on the home network to alert it that the user has left and to turn off any lights associated with that user.
+

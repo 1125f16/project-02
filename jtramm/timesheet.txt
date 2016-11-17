@@ -1,0 +1,15 @@
+Date	Hours	Task Description
+10/28/2016	5	Initial project meeting. High level architecture. Research and testing of several Philips Hue Node.js interface packages. HueJay package/hardware config. First github commits.
+11/8/2016	5	Project proposal.  Brainstorm ideas about project.
+11/1/2016	6	Initial development of server. Multi-user tracking and logic, multi-user preference mixing, beacon to light association, turn lights on/off. HTTP request handling to trigger logic. HueJay Node.js usage for light messages.
+11/3/2016	4	Further server development. More robust error handling. Source cleanup. Tessel2 setup. Deployment and testing of server on Tessel2. Stand alone server testing.
+10/29/2016	6	Initial development of iOS App.  Setting up GitHub repo.  Creating XCode project.  Initial GUI.  Initial ability to detect iBeacons.
+11/3/2016	5	Connection of the App to the Backend.  Enhancements to backend to support development.  The idea works!
+11/4/2016	5	Switching lights while moving between rooms is working in the background.
+11/5/2016	3	Indefinite background updating working.  Working with real iBeacons and multiple phones.
+11/16/2016	1	Filming of video footage at Derek's apartment
+11/17/2016	1	Filming of video footage at Jonh's apartment
+11/17/2016	4	Further iBeacon setup. Video storyboarding, script-writing, voice over, and editing.
+11/17/2016	1	Video uploading, documentation, changelog, github submission
+		
+TOTAL	46 Hours
