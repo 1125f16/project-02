@@ -1,0 +1,16 @@
+Week 01
+2hrs - researching concepts
+1hr - working on storyboard, different concepts of operations
+2hrs - compiling information for project 01
+1hr - testing camera code
+
+Week 02
+4hrs - testing camera code, difficulties initializing stream even with recommended hardware and example code.
+1hr - creating HTTP server, checking on img scraping
+1hr - install USB flash drive, installing mkdirp and creating file structure
+    - Determining which trigger to take picture, may use faces to detect face and then camera to take picture. 
+1hr - attempting to use clap as prompt for taking a picture. Issue with writing a file during loop.
+1hr - using XMLHttpRequest
+---------
+Total: 
+
