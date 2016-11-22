@@ -1,0 +1,5 @@
+We have already implemented the iPhone client application and a basic server application that can be run on the Tessel2. This code is available in our GitHub repositories. In general, Derek is taking the lead on the iPhone application and John is taking the lead on the server application.
+
+
+iPhone app repository: https://github.com/friedmud/proxihue_app
+Server app repository: https://github.com/jtramm/proxihue

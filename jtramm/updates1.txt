@@ -1,0 +1,7 @@
+- There have been a few small code updates since the last one, but as these are stored in an offsite github repo they will not affect this repository.
+
+- As we were ahead of schedule last week, we already have a fully working set of code, so the project is basically complete at this point.
+
+- We have added file with a link to our video "video_link.txt" that points to our product video that is available on youtube.
+
+- We have updated our timesheet to reflect time spent preparing the video.
