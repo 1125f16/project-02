@@ -1,0 +1,102 @@
+var tessel = require('tessel');
+var ambientlib = require('ambient-attx4');
+var fs = require('fs');
+var path = require('path');
+var av = require('tessel-av');
+
+var ambient = ambientlib.use(tessel.port['A']);
+var camera = new av.Camera();
+var capture = camera.capture();
+var count = 0;
+ 
+
+ambient.on('ready', function () {
+
+  // Set a sound level trigger
+  // The trigger is a float between 0 and 1
+  ambient.setSoundTrigger(0.1);
+  console.log('Waiting for a bright light or a sound...');
+  ambient.on('sound-trigger', function(data) {
+    console.log("Something happened with sound: ", data);
+  
+    capture.on('data', function(data) {
+    fs.writeFile(path.join('/mnt/sda1/img/', count+'.jpg'), data);
+    //adds one to the counter
+    count += 1;
+    });
+    // Clear it
+    ambient.clearSoundTrigger();
+
+    //After 1.5 seconds reset sound trigger
+    setTimeout(function () {
+
+        ambient.setSoundTrigger(0.1);
+
+    },100);
+
+  });
+});
+
+ambient.on('error', function (err) {
+  console.log(err);
+});
+
+//Microsoft Cognitive API Call
+var faceData = [];
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
+var xmlHttp = new XMLHttpRequest();
+function httpGetAsync(theUrl)
+{
+    xmlHttp.responseType = "json";
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback();
+    };
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Content-Type","application/json");
+    xmlHttp.setRequestHeader("Ocp-Apim-Subscription-Key","e1c8d985f4e04a5aa7703cd3e8b0e38d");
+    xmlHttp.send('mnt/sda1/img/1.jpg');
+}
+
+function callback() {
+
+    var parser, xmlDoc;
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(xmlHttp.responseText,"text/xml");
+    // var tempCog = JSON.parse();
+    console.log("##########START PUSHING############");
+    faceData.push(xmlDoc);
+    console.log(faceData[0]);
+   // console.log(faceData.scores);
+}
+
+httpGetAsync('http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
+// To send the data to Google
+
+
+		google.charts.load('current', {packages: ['corechart', 'line']});
+		google.charts.setOnLoadCallback(initChart);
+		
+
+		function initChart()
+		{
+			var options = {
+    			title: "Emotions";
+    		}
+
+			var  = new google.visualization.DataTable();
+			dataTable.addColumn('date', 'Time');
+			dataTable.addColumn('number', 'Anger');
+			dataTable.addColumn('number', 'Contempt');
+			dataTable.addColumn('number', 'Disgust');
+			dataTable.addColumn('number', 'Fear');
+			dataTable.addColumn('number', 'Happiness');
+			dataTable.addColumn('number', 'Neutral');
+			dataTable.addColumn('number', 'Sadness');
+			dataTable.addColumn('number', 'Surprise');
+
+			var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+			
+		}

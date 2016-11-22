@@ -1,0 +1,4 @@
+Updating the npm packages needed - mkdirp, faces for new trigger? Potentially switching to OpenCV
+Using to use USB flash storage
+Updating the codeArtifacts 
+Using XMLHttpRequest
