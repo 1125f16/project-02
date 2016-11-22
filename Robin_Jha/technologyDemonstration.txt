@@ -1,0 +1,7 @@
+I have implemented the data collection agents for disk usage on a Mesos datacenter (DC) of 50 nodes, which is currently polling every 2 minutes (code for this is not checked in).
+
+Besides this I was able to launch docker containers for spark framework consisting of master and slaves on the same DC. 
+
+Code for deployment is currently checked into git repository: https://github.com/robinjha/pie
+
+

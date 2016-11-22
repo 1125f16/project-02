@@ -1,0 +1,9 @@
+The setup for running the analysis engine was a bit tricky since I needed a cluster big enough to be able to generate enough data with ample resources to be used for the engine. Portability and deployment was another concern that I had to consider. 
+
+I have divided the project into 4 main parts:
+ 1. Collection of necessary data. 
+2. Deployment of the spark cluster. (/deployment)
+3. Code for doing the analysis (/src)
+4. Save the data for visualization  (/visualization)
+
+Here is the repository for the engine: https://github.com/robinjha/pie 

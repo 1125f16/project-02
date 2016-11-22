@@ -1,0 +1,3 @@
+Before starting the project my biggest risk was to get data. With my implementation of the agent I have passed that hurdle. 
+
+My current risk is to be able to successfully run prediction analysis on the collected data since I am new to Machine Learning and don't have the background. Given the timeframe and all the moving parts of  my project that would be a challenge. 
