@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "amazon-customer-reviews",
+        "scope": null,
+        "escapedName": "amazon-customer-reviews",
+        "name": "amazon-customer-reviews",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Saleha"
+    ]
+  ],
+  "_from": "amazon-customer-reviews@latest",
+  "_id": "amazon-customer-reviews@0.0.16",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/amazon-customer-reviews",
+  "_nodeVersion": "5.2.0",
+  "_npmUser": {
+    "name": "0niveau",
+    "email": "becker.nico.91@gmail.com"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "amazon-customer-reviews",
+    "scope": null,
+    "escapedName": "amazon-customer-reviews",
+    "name": "amazon-customer-reviews",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/amazon-customer-reviews/-/amazon-customer-reviews-0.0.16.tgz",
+  "_shasum": "55bb904e9c006803865461db5053e2c081d047f8",
+  "_shrinkwrap": null,
+  "_spec": "amazon-customer-reviews",
+  "_where": "C:\\Users\\Saleha",
+  "author": {
+    "name": "Nico Becker"
+  },
+  "bugs": {
+    "url": "https://github.com/0niveau/acs/issues"
+  },
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "express": "^4.14.0",
+    "promise": "^7.0.4",
+    "request": "^2.67.0"
+  },
+  "description": "retrieves amazon customer reviews for a given product id",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "55bb904e9c006803865461db5053e2c081d047f8",
+    "tarball": "https://registry.npmjs.org/amazon-customer-reviews/-/amazon-customer-reviews-0.0.16.tgz"
+  },
+  "gitHead": "17a7480c1b3da32dfe25dc85f1f0cd37883ac4f1",
+  "homepage": "https://github.com/0niveau/acs#readme",
+  "license": "GPL-3.0",
+  "main": "review-parser.js",
+  "maintainers": [
+    {
+      "name": "0niveau",
+      "email": "becker.nico.91@gmail.com"
+    }
+  ],
+  "name": "amazon-customer-reviews",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0niveau/acs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.16"
+}
