@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  font-weight: 300;
+  font-family: Open Sans, Helvetica, Arial, sans-serf;
+  font-size: 12px;
+}
+
+#svg1{
+    position: absolute;
+    z-index: 1;
+}
+#svg2{
+    z-index:1;
+}
+
+.axis--x path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #888;
+  stroke-width: 1.5px;
+}
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.gnode circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+.gnode text {
+  pointer-events: none;
+  font: 2px;
+  color: #000;
+}
+
+#panelstuff{
+    position: absolute;
+    float:left;
+    z-index:1;
+    padding:2%;
+    width:96%;
+    pointer-events: none;
+
+}
+
+#leftpanel{
+    width: 30%;
+    float:left;
+    pointer-events: all;
+}
+
+#centerpanel{
+    width: 40%;
+    float:left;
+    text-align: center;
+    height: 1px;
+}
+
+#rightpanel{
+    width:30%;
+    float:left;
+    pointer-events: all;
+}
+
+.bitdivs{
+    margin: 10px;
+    padding: 8px;
+}
+
+#simbox{
+    background-color:#ddd;
+    margin: 2px;
+    padding: 8px;
+
+}
+
+p{
+    padding:0;
+    margin:0;
+}
+.divheader{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+input[type=number]{
+    width: 50px;
+} 
+
+ul{
+    list-style-type:none;
+}
+
+.context-menu {
+  position: absolute;
+  display: none;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  min-width: 150px;
+  border: 1px solid #d4d4d4;
+  z-index:1200;
+}
+
+.context-menu ul {
+  list-style-type: none;
+  margin: 4px 0px;
+  padding: 0px;
+  cursor: default;
+}
+
+.context-menu ul li {
+  padding: 4px 16px;
+}
+
+.context-menu ul li:hover {
+  background-color: #ddd;
+  color: #fefefe;
+}
+</style>
+
+
+
+
+
+<body>
+<svg id="svg1" width="960" height="600"></svg>
+<div id="panelstuff">
+    <div id = "leftpanel">
+        <div id="div1" class="bitdivs" style=" background: rgba(80, 15, 15, .3)"><p class='divheader'>Problem Landscape</p><br>
+            <form id="NK">
+             <b> N</b> (dimensions): <input type="number" name="nval"><br>
+            <b>K</b> (interdependence): <input type="number"  name="kval"><br>
+            </form>
+        </div>
+        <div id="div1" class="bitdivs" style=" background: rgba(80, 15, 15, .3)"><p class='divheader'>Adoption Quality</p><br>
+            <form id="adoption">
+              <input type="checkbox" value="ac"> Absorption capacity<br>
+              <input type="checkbox" value="cerror"> Copying error<br>
+            </form>
+        </div>
+        <div id="div1" class="bitdivs" style=" background: rgba(80, 15, 15, .3)"><p class='divheader'>Network Structure</p><br>
+            Watts-Strogatz small world graphparameters<br>
+            <b>N</b> (nodes): <input type="number" name="swnval"><br>
+            <b>K</b> (degree): <input type="number"  name="swkval"><br>
+            <b>b</b> (rewiring probability): <input type="number" name="swbval"><br>
+            <input type='button' id='graphbutton' value='Generate graph' onclick='makegraph()'>
+        </div>
+    </div>
+
+    <div id = "centerpanel">
+        <p></p>
+    </div>
+
+    <div id="rightpanel">
+        <div id="div2" class="bitdivs" style=" background: rgba(15, 15, 50, .3);"><p class='divheader'>Simulation Parameters</p><br>
+            <form id="simparameters">
+                Simulation name: <input type="text" id="simname"><br>
+                Timesteps: <input type="number" id="simtime"><br>
+                Landscapes: <input type="number" id="simland"><br>
+            </form>
+            <br>
+            <input type="button" id="changecolor" value ="Run simulation" onclick="runsim()">
+        </div>
+        <div id="div2" class="bitdivs" style=" background: rgba(15, 15, 50, .3);"><p class='divheader'>Completed Runs</p>
+            <ul id='rlist'></ul>
+            <input type="button" id="loadsim" value ="Load simulation" onclick="loadsim()"><br><br>
+            <div id='simbox'>
+                <b>Current simulation:</b> <p id='currentsimshown' style='display:inline;'></p><br><br>
+                <p id='currenttshown'>t=0</p><br>
+                <input class="slider" id="changeslide" type="range" style="width:100%;" min="1" max="100" step="1" value="1" name="page" onchange="dofunction(this.value)"/><br>
+                <table style='width:100%;'>
+                    <tr >
+                        <td style='width:20%;'>t=0</td><td style='width:60%; text-align:center;'>
+                            <input type='button' id='reverse' value="<<" onclick="changesim(this.id)">
+                            <input type='button' id='play' value='>' onclick="playsim()">
+                            <input type='button' id='pause' value='||' onclick="pausesim()">
+                            <input type='button' id='forward' value='>>' onclick="changesim(this.id)">
+
+                        </td><td style='width:20%;text-align:right;'>t=<p id='endtime' style='display:inline;'>end</p></td>
+                    </tr>
+                </table>
+                <br><b>Average value over time:</b><br><br>
+                <svg id="svg2" width="300" height="150"></svg>
+            </div>
+        </div>
+
+    </div>    
+</div>
+
+</body>
+
+
+
+
+
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="randomgraph.js"></script>
+<script src="linegraph.js"></script>
+<script src='miserables.json'></script>
+
+<!-- NEED TO LOAD PRE-MADE NK MODELS -->
+
+
+<script>
+var graph = data
+var nkmatrix = [];
+var swgraph = null;
+
+console.log(swgraph)
+
+function makegraph(){
+    var swgraph = randomgraph.WattsStrogatz.alpha(10,2,0.1);
+}
+
+function blafunction(val){
+    console.log(val)
+}
+
+function playsim(){
+    window.myTimer = setInterval(function(){ changesim('forward'); }, 500);
+}
+
+function pausesim(){
+    clearInterval(window.myTimer)
+    return;
+}
+
+function changesim(buttonid){
+    var simname = $('input[name=fu]:checked').val()
+    if (simname==undefined){
+        alert('There is no simulation loaded. Run a simulation first.');
+        return;
+    }
+
+    var currentt = parseInt($('#changeslide').val()); // current time step
+    var maxt = 100 // BUT IT SHOULD BE THE FILE'S T.
+    console.log(buttonid)
+    if (buttonid == 'reverse'){
+        console.log('reversing')
+        if (currentt>1){
+            var nextt = currentt-1;
+        } else{
+            var nextt = currentt;
+        }
+    } else {
+        if (currentt==maxt){
+            clearInterval(window.myTimer);
+            return;
+        } else {
+        var nextt = currentt+1;
+        console.log('nextt:'+nextt)
+        }
+    }
+    $('#changeslide').val(nextt);
+    document.getElementById("currenttshown").innerHTML = "t="+nextt;
+    dofunction(nextt)
+    // loadgraph(graph(t+1)) or something... draw the graph again for given time
+    // 
+}
+
+function loadsim(){
+    var simname = $('input[name=fu]:checked').val()
+    if (simname==undefined){
+        alert('There are no simulations to load. Run a simulation first.');
+    } else {
+        document.getElementById("currentsimshown").innerHTML = simname;
+    }
+}
+
+function runsim(){
+    var simname = $('#simname').val();
+    var simtime = parseInt($('#simtime').val());
+    console.log(simtime)
+    var simland = parseInt($('#simland').val());
+    if (simname==""){ alert ('Name this simulation'); return;}
+    if (isNaN(simtime)||simtime<1){alert ('Value for timesteps must be a positive integer'); return;}
+    if (isNaN(simland)||simland<1){alert ('Value for landscapes must be a positive integer'); return;}
+
+    document.getElementById("endtime").innerHTML = simtime;
+    $('#changeslide').attr('max', simtime); 
+    // some sort of 'loading' pinwheel
+
+    //1. Get/check the NK
+
+    //2. Get/check adoption
+
+    //3. Get/run the network
+
+    //4. get/check sim parameters
+
+    //5. save in json file
+
+
+
+    addsim()
+     $("#simparameters")[0].reset()
+}
+
+function addsim(){
+
+    var currentdate = new Date(); 
+    var datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + " @ "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+
+    $('.runitem').attr('checked', false);
+    var simname = $('#simname').val();
+    simname = simname+" ["+datetime+"]";
+    var listval = "<li><input type='radio' value='"+simname+"' class='runitem' name='fu' checked>"+simname+"</li>";
+    var rlist = document.getElementById('rlist');
+    rlist.insertAdjacentHTML( 'beforeend', listval );
+    
+    // // var entry = document.createElement('li');
+    // entry.appendChild(document.createTextNode(listval));
+    // rlist.appendChild(listval);
+
+}
+
+function dofunction(val) {
+
+    console.log(graph.nodes)
+    for (i in graph.nodes) {
+        graph.nodes[i].group = 5*Math.random();
+    }
+    // document.getElementById("changecolor").innerHTML = "YOU CLICKED ME!";
+    console.log(graph)
+    loaddata(graph)
+    posttick(graph)
+
+    // d3.selectAll('g').select('circle')
+    //         .transition()
+    //         .duration(500)
+    //         .attr("style", "fill:red; stroke:red; stroke-width: 2px;" )
+}
+
+var svg = d3.select("#svg1"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+// var color = d3.scaleOrdinal(d3.schemeCategory20);
+var color = d3.scaleLinear().domain([0,5]).range(["#f9cdbb","#e16e41"]);
+
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+loaddata(graph)
+
+svg.selectAll("circle").on("click", function(){
+            d3.select(this).attr('r', 25)
+                .style("fill","lightcoral")
+                .style("stroke","red");
+        });
+
+function loaddata(graph) {
+    
+    // delete existing nodes/links
+    d3.selectAll("#svg1.g").remove(); //
+
+var svg = d3.select("#svg1")
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+
+var gnodes = svg.selectAll('g.gnode')
+  .data(graph.nodes)
+  .enter()
+  .append('g')
+  .classed('gnode', true);
+
+var fruits = ["Apple", "Orange", "Banana", "Grape"];
+
+// Add one circle in each group
+var node = gnodes.append("circle")
+  .attr("class", "node")
+  .attr("r", function(d){return d.group;})
+  .on("mousedown", console.log('mousedewn'))
+  .style("fill", function(d) { return color(d.group); })
+  .call(d3.drag)
+  .on('mousedown', function(d,i) {
+          // create the div element that will hold the context menu
+          d3.selectAll('.context-menu').data([1])
+            .enter()
+            .append('div')
+            .attr('class', 'context-menu');
+          // close menu
+          d3.select('body').on('click.context-menu', function() {
+            d3.select('.context-menu').style('display', 'none');
+          });
+          // this gets executed when a contextmenu event occurs
+          d3.selectAll('.context-menu')
+            .html('')
+            .append('ul')
+            .selectAll('li')
+              .data(fruits).enter()
+              .append('li')
+              
+          .on('click' , function(d) { console.log(d); return d; })
+              
+
+              .text(function(d) { return d; });
+          d3.select('.context-menu').style('display', 'none');
+          // show the context menu
+          d3.select('.context-menu')
+            .style('left', (d3.event.pageX - 2) + 'px')
+            .style('top', (d3.event.pageY - 2) + 'px')
+            .style('display', 'block');
+          d3.event.preventDefault();
+      });
+
+// Append the labels to each group
+var labels = gnodes.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+        .text(function(d) { return d.id; });
+
+console.log('moving')
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    console.log('ticking')
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    // Translate the groups
+      gnodes.attr("transform", function(d) { 
+        return 'translate(' + [d.x, d.y] + ')'; 
+      });
+  }
+
+  
+};
+
+// this is surely not how it's meant to be done but i can't find a better way.
+function posttick(graph){
+    console.log('postticking')
+var svg = d3.select("#svg1")
+svg.selectAll("line")
+      .data(graph.links)
+      .attr("x1", function(d) { console.log('updating'); return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  svg.selectAll("g.gnode")
+      .data(graph.nodes)
+    .attr("transform", function(d) { 
+        return 'translate(' + [d.x, d.y] + ')'; 
+      });
+}
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+</script>
