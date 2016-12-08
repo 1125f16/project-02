@@ -1,0 +1,11 @@
+The project has moved more towards developing a online-simulation tool that many people can use, as opposed to one that accurately reflects the influence of the IP landscape on the kinds of ideas that can spread.
+
+This is from feedback that patent data is not necessarily representative of the problem space, as well as interest in having a user-friendly agent-based simulator. Thus this project has focused on making this user-friendly interface.
+
+The baseline architecture of the website has also been made, which can be found in codeArtifact. All the function triggers for the page exist, and the general look, but none of the functions work properly.
+
+The files that have changed are:
+- proposal.txt
+- codeArtifact
+- storyboard.pdf
+- timesheet.txt

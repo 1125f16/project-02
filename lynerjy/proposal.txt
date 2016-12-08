@@ -1,0 +1,12 @@
+Project Proposal
+
+0. Objectives
+
+The project will be an agent based model of idea diffusion. People will be able to come to a website to understand how different parameters affect the spread of ideas in a network.
+
+
+1. Agent-based model
+An agent based model will be developed to show how individuals traverse a problem landscape (that will be defined by the dataset). There are 3 elements that make up such a model: a) an NK model, which is an evolution model which has been adapted to model the interdependence between parts of a problem and the varying value of its solution, b) a network model, which represents how, say, individuals in an organization are connected to one another, or how firms are connected in a field, and c) a search algorithm defining how these individual nodes decide to interact with one another and with the problem space.
+
+3. Visualization
+The simulation of this network will be shown using d3.js. The user will be able to manipulate this graph, and save different simulations that they run.  
